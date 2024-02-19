@@ -1,9 +1,9 @@
-import 'package:Genius/bottomNavigationBar.dart';
-import 'package:Genius/study.dart';
-import 'package:Genius/register.dart';
+import 'package:Genius/utilities/bottomNavigationBar.dart';
+import 'package:Genius/screens/study.dart';
+import 'package:Genius/screens/register.dart';
 import 'package:flutter/material.dart';
-import 'package:Genius/login.dart';
-import 'package:Genius/otpVerification.dart';
+import 'package:Genius/screens/login.dart';
+import 'package:Genius/screens/otpVerification.dart';
 
 void main() {
   runApp(MyApp());

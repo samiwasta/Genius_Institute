@@ -1,4 +1,4 @@
-import 'package:Genius/otpVerification.dart';
+import 'package:Genius/screens/otpVerification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:Genius/study.dart';
-import 'package:Genius/batches.dart';
-import 'package:Genius/test.dart';
-import 'package:Genius/profile.dart';
+import 'package:Genius/screens/study.dart';
+import 'package:Genius/screens/batches.dart';
+import 'package:Genius/screens/test.dart';
+import 'package:Genius/screens/profile.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);

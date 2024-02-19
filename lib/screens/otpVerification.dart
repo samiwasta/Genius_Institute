@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:Genius/register.dart';
+import 'package:Genius/screens/register.dart';
 
 class OTPVerification extends StatefulWidget {
   final String phoneNumber;

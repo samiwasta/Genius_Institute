@@ -36,7 +36,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.9
-  modular_ui: ^0.0.5
   intl_phone_number_input: ^0.7.4
   chips_choice_null_safety: ^2.0.6
 

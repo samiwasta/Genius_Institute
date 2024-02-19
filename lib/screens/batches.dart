@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Genius/courseProductCard.dart';
+import 'package:Genius/utilities/courseProductCard.dart';
 
 class BatchesScreen extends StatefulWidget {
   const BatchesScreen({Key? key}) : super(key: key);
