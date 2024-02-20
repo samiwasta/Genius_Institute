@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:Genius/utilities/courseProductCard.dart';
+import 'package:Genius/globalData.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BatchesScreen extends StatefulWidget {
   const BatchesScreen({Key? key}) : super(key: key);
@@ -12,10 +14,49 @@ class _BatchesScreenState extends State<BatchesScreen> {
   final ValueNotifier<int> tabIndexNotifier = ValueNotifier<int>(0);
   late PageController _pageController;
 
+  List<Widget> NEETbatches = [];
+  List<Widget> JEEbatches = [];
+  List<Widget> CETbatches = [];
+
+  bool isLoaded = false;
+
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
+
+    // Fetch all batches
+    db.collection("batches").get().then(
+      (querySnapshot) {
+        print("Successfully completed");
+        for (var docSnapshot in querySnapshot.docs) {
+          print('${docSnapshot.id} => ${docSnapshot.data()}');
+
+          var data = docSnapshot.data();
+
+          var card = CourseProductCard(
+            title: '${docSnapshot.id}',
+            batch: data['batch'],
+            imageUrl: data['imageURL'],
+            price: '₹${data['price']}',
+            duration: data['duration'],
+          );
+
+          if (data['exam'] == 'JEE') {
+            JEEbatches.add(card);
+          } else if (data['exam'] == 'NEET') {
+            NEETbatches.add(card);
+          } else if (data['exam'] == 'CET') {
+            CETbatches.add(card);
+          }
+
+          setState(() {
+            isLoaded = true;
+          });
+        }
+      },
+      onError: (e) => print("Error completing: $e"),
+    );
   }
 
   @override
@@ -27,139 +68,46 @@ class _BatchesScreenState extends State<BatchesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SafeArea(child: SizedBox()),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTab("IIT-JEE", 0),
-                    SizedBox(width: 16),
-                    _buildTab("NEET", 1),
-                    SizedBox(width: 16),
-                    _buildTab("MHT-CET", 2),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              child: PageView(
-                controller: _pageController,
-                onPageChanged: (index) {
-                  tabIndexNotifier.value = index;
-                },
+      body: (isLoaded)
+          ? Padding(
+              padding:
+                  const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildCourseList([
-                    CourseProductCard(
-                      title: 'MISSION JEE 2025',
-                      batch: '2025',
-                      imageUrl: 'https://i.ibb.co/p1jPtM6/JEE2025.png',
-                      price: '₹9999',
-                      duration: '2 years',
+                  SafeArea(child: SizedBox()),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildTab("IIT-JEE", 0),
+                          SizedBox(width: 16),
+                          _buildTab("NEET", 1),
+                          SizedBox(width: 16),
+                          _buildTab("MHT-CET", 2),
+                        ],
+                      ),
                     ),
-                    SizedBox(height: 25,),
-                    CourseProductCard(
-                      title: 'MISSION JEE 2026',
-                      batch: '2026',
-                      imageUrl: 'https://i.ibb.co/wCVyZdf/JEE2026.png',
-                      price: '₹9999',
-                      duration: '2 years',
+                  ),
+                  Expanded(
+                    child: PageView(
+                      controller: _pageController,
+                      onPageChanged: (index) {
+                        tabIndexNotifier.value = index;
+                      },
+                      children: [
+                        _buildCourseList(JEEbatches),
+                        _buildCourseList(NEETbatches),
+                        _buildCourseList(CETbatches),
+                      ],
                     ),
-                    SizedBox(height: 25,),
-                    CourseProductCard(
-                      title: 'MISSION JEE 2025 (Droppers)',
-                      batch: '2025',
-                      imageUrl: 'https://i.ibb.co/NyVC7JF/JEE2025-DROPPER.png',
-                      price: '₹9999',
-                      duration: '1 year',
-                    ),
-                    SizedBox(height: 25,),
-                    CourseProductCard(
-                      title: 'JEE CRASH COURSE',
-                      batch: '2025',
-                      imageUrl: 'https://i.ibb.co/mB8FM07/JEECRASH.png',
-                      price: '₹9999',
-                      duration: '3 Months',
-                    ),
-                  ]),
-                  _buildCourseList([
-                    CourseProductCard(
-                      title: 'MISSION NEET 2025',
-                      batch: '2025',
-                      imageUrl: 'https://i.ibb.co/qWB8yPy/NEET2025.png',
-                      price: '₹9999',
-                      duration: '2 years',
-                    ),
-                    SizedBox(height: 25,),
-                    CourseProductCard(
-                      title: 'MISSION NEET 2026',
-                      batch: '2026',
-                      imageUrl: 'https://i.ibb.co/w7dvhdT/NEET2026.png',
-                      price: '₹9999',
-                      duration: '2 years',
-                    ),
-                    SizedBox(height: 25,),
-                    CourseProductCard(
-                      title: 'MISSION NEET 2025 (Droppers)',
-                      batch: '2025',
-                      imageUrl: 'https://i.ibb.co/7JGnDHN/NEET2025-DROPPER.png',
-                      price: '₹9999',
-                      duration: '1 year',
-                    ),
-                    SizedBox(height: 25,),
-                    CourseProductCard(
-                      title: 'NEET CRASH COURSE',
-                      batch: '2025',
-                      imageUrl: 'https://i.ibb.co/4d3QNpQ/NEETCRASH.png',
-                      price: '₹9999',
-                      duration: '3 months',
-                    ),
-                  ]),
-                  _buildCourseList([
-                    CourseProductCard(
-                      title: 'MISSION CET 2025',
-                      batch: '2025',
-                      imageUrl: 'https://i.ibb.co/fNqrVyS/CET2025.png',
-                      price: '₹9999',
-                      duration: '2 years',
-                    ),
-                    SizedBox(height: 25,),
-                    CourseProductCard(
-                      title: 'MISSION CET 2026',
-                      batch: '2026',
-                      imageUrl: 'https://i.ibb.co/wQFYCkR/CET2026.png',
-                      price: '₹9999',
-                      duration: '2 years',
-                    ),
-                    SizedBox(height: 25,),
-                    CourseProductCard(
-                      title: 'MISSION CET 2025 (Droppers)',
-                      batch: '2025',
-                      imageUrl: 'https://i.ibb.co/SnCPp2f/CET2025-DROPPER.png',
-                      price: '₹9999',
-                      duration: '1 year',
-                    ),
-                    SizedBox(height: 25,),
-                    CourseProductCard(
-                      title: 'CET CRASH COURSE',
-                      batch: '2025',
-                      imageUrl: 'https://i.ibb.co/fNPhqvM/CETCRASH.png',
-                      price: '₹9999',
-                      duration: '3 months',
-                    ),
-                  ]),
+                  ),
                 ],
               ),
-            ),
-          ],
-        ),
-      ),
+            )
+          : Center(child: CircularProgressIndicator()),
     );
   }
 

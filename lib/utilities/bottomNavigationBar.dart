@@ -3,6 +3,8 @@ import 'package:Genius/screens/study.dart';
 import 'package:Genius/screens/batches.dart';
 import 'package:Genius/screens/test.dart';
 import 'package:Genius/screens/profile.dart';
+import 'package:Genius/globalData.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
@@ -25,6 +27,21 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      if (user!['batches'].length == 0) {
+        _selectedIndex = 1;
+      }
+      else {
+        _selectedIndex = 0;
+      }
+    });
+
   }
 
   @override

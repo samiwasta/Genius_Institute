@@ -1,7 +1,11 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:Genius/screens/register.dart';
+import 'package:Genius/globalData.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OTPVerification extends StatefulWidget {
   final String phoneNumber;
@@ -22,6 +26,7 @@ class _OTPVerificationState extends State<OTPVerification> {
     super.initState();
     _generatedOTP = _generateOTP();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +134,32 @@ class _OTPVerificationState extends State<OTPVerification> {
     });
 
     if (_otp == _generatedOTP) {
-      Navigator.popAndPushNamed(context, '/register');
+
+      final docRef = db.collection("users").doc(widget.phoneNumber.substring(3));
+      print(widget.phoneNumber);
+      docRef.get().then(
+            (DocumentSnapshot doc) async {
+              if (!doc.exists) {
+                phonenumber = widget.phoneNumber.substring(3);
+                Navigator.popAndPushNamed(context, '/register');
+              }
+              else {
+                user = doc.data() as Map<String, dynamic>;
+                phonenumber = widget.phoneNumber.substring(3);
+
+                // add phonenumber and user to the shared prefs qwerty
+
+                final SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setString('phonenumber', phonenumber!);
+                await prefs.setString('user', jsonEncode(user));
+
+                Navigator.popAndPushNamed(context, '/bottomNavigationBar');
+              }
+
+        },
+        onError: (e) => print("Error getting document: $e"),
+      );
+
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

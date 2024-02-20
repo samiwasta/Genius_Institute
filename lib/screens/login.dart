@@ -1,7 +1,12 @@
+import 'dart:convert';
+
+import 'package:Genius/globalData.dart';
 import 'package:Genius/screens/otpVerification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -10,12 +15,36 @@ class Login extends StatefulWidget {
   State<Login> createState() => _LoginState();
 }
 
+
 class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _phoneNumber = '';
 
+  void checkLogin() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? phone = prefs.getString('phonenumber');
+    if (phone != null) {
+      phonenumber = phone;
+      user = jsonDecode(prefs.getString('user')!);
+
+      print(user);
+
+      Navigator.popAndPushNamed(context, '/bottomNavigationBar');
+    }
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    // check if already logged in if yes, go to bottomnavpage qwerty
+    checkLogin();
+
+    // to logout, simply clear the shared prefs
+
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),

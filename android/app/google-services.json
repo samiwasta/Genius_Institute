@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "534152837213",
+    "project_id": "genius-lms",
+    "storage_bucket": "genius-lms.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534152837213:android:234fb78f5d4f349dcfb5b4",
+        "android_client_info": {
+          "package_name": "com.example.genius"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJBwwl7iavx0IRt10mr5sex2-71Prv5gQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
