@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:Genius/globalData.dart';
-import 'package:Genius/screens/otpVerification.dart';
+import 'package:genius/globalData.dart';
+import 'package:genius/screens/otpVerification.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -26,11 +27,24 @@ class _LoginState extends State<Login> {
     String? phone = prefs.getString('phonenumber');
     if (phone != null) {
       phonenumber = phone;
-      user = jsonDecode(prefs.getString('user')!);
 
-      print(user);
+      //fetch the user data from firebase
+      final docRef = db.collection("users").doc(phonenumber);
 
-      Navigator.popAndPushNamed(context, '/bottomNavigationBar');
+      docRef.get().then(
+            (DocumentSnapshot doc) async {
+          if (!doc.exists) {
+            Navigator.popAndPushNamed(context, '/register');
+          }
+          else {
+            user = doc.data() as Map<String, dynamic>;
+
+            Navigator.popAndPushNamed(context, '/bottomNavigationBar');
+          }
+
+        },
+        onError: (e) => print("Error getting document: $e"),
+      );
     }
 
 

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class Test {
   final String title;
   final String duration;
+  final String URL;
 
-  Test({required this.title, required this.duration});
+  Test({required this.title, required this.duration, required this.URL});
 }
 
 Widget buildTestCards(List<Test> tests) {
@@ -39,16 +40,16 @@ Widget _buildTestCard(Test test) {
               // Add your logic to start the test
             },
             child: Text(
-                'Attempt Test',
+              'Attempt Test',
               style: TextStyle(
-                fontSize: 14,
-                color: Colors.white
+                  fontSize: 14,
+                  color: Colors.white
               ),
             ),
             style: ElevatedButton.styleFrom(
-              elevation: 0,
-              backgroundColor: Colors.black87,
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12)
+                elevation: 0,
+                backgroundColor: Colors.black87,
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12)
             ),
           ),
         ],

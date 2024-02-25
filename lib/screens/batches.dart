@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Genius/utilities/courseProductCard.dart';
-import 'package:Genius/globalData.dart';
+import 'package:genius/utilities/courseProductCard.dart';
+import 'package:genius/globalData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BatchesScreen extends StatefulWidget {
@@ -28,9 +28,7 @@ class _BatchesScreenState extends State<BatchesScreen> {
     // Fetch all batches
     db.collection("batches").get().then(
       (querySnapshot) {
-        print("Successfully completed");
         for (var docSnapshot in querySnapshot.docs) {
-          print('${docSnapshot.id} => ${docSnapshot.data()}');
 
           var data = docSnapshot.data();
 

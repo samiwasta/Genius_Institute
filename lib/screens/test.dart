@@ -1,5 +1,6 @@
+import 'package:genius/globalData.dart';
 import 'package:flutter/material.dart';
-import 'package:Genius/utilities/testCard.dart';
+import 'package:genius/utilities/testCard.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 
 class TestScreen extends StatefulWidget {
@@ -15,11 +16,28 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
   int tag = 0;
   List<String> selectedSubject = ['All', 'Physics', 'Chemistry', 'Maths', 'Biology'];
 
+  List weeklyTests = [];
+  List monthlyTests = [];
+  List fullTests = [];
+
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+
+    for (var test in testMaterial) {
+      if (test['periodicity'] == 0 ) {
+        weeklyTests.add(test);
+      }
+      else if (test['periodicity'] == 1) {
+        monthlyTests.add(test);
+      }
+      else if (test['perdiocity'] == 2) {
+        fullTests.add(test);
+      }
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +56,7 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
           ],
         ),
       ),
-      body: TabBarView(
+      body: (isMaterialLoaded) ? TabBarView(
         controller: _tabController,
         children: [
           Column(
@@ -73,39 +91,78 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
           buildTestCards(_getMonthlyTests()),
           buildTestCards(_getFullTests()),
         ],
-      ),
+      ) : Center(child: CircularProgressIndicator(),),
     );
   }
 
   List<Test> _getSubjectwiseTests(List<String> selectedSubjects) {
     // Define and return subjectwise test data based on selected subjects
     // Filter tests based on selected subjects
-    return [
-      Test(title: 'Subjectwise Test 1', duration: '1 hour'),
-      Test(title: 'Subjectwise Test 2', duration: '45 minutes'),
-      Test(title: 'Subjectwise Test 3', duration: '30 minutes'),
-    ];
+
+    List<Test> testList = [];
+
+    for (var test in testMaterial) {
+      testList.add(
+        Test(
+          title: test['name'],
+          duration: test['duration'],
+          URL: test['URL']
+        )
+      );
+    }
+
+    return testList;
   }
 
   List<Test> _getWeeklyTests() {
     // Define and return weekly test data
-    return [
-      Test(title: 'Weekly Test 1', duration: '2 hours'),
-      Test(title: 'Weekly Test 2', duration: '1.5 hours'),
-    ];
+
+    List<Test> testList = [];
+
+    for (var test in weeklyTests) {
+      testList.add(
+          Test(
+              title: test['name'],
+              duration: test['duration'],
+              URL: test['URL']
+          )
+      );
+    }
+
+    return testList;
   }
 
   List<Test> _getMonthlyTests() {
     // Define and return monthly test data
-    return [
-      Test(title: 'Monthly Test 1', duration: '3 hours'),
-    ];
+    List<Test> testList = [];
+
+    for (var test in monthlyTests) {
+      testList.add(
+          Test(
+              title: test['name'],
+              duration: test['duration'],
+              URL: test['URL']
+          )
+      );
+    }
+
+    return testList;
   }
 
   List<Test> _getFullTests() {
     // Define and return full test data
-    return [
-      Test(title: 'Full Test 1', duration: '4 hours'),
-    ];
+    List<Test> testList = [];
+
+    for (var test in fullTests) {
+      testList.add(
+          Test(
+              title: test['name'],
+              duration: test['duration'],
+              URL: test['URL']
+          )
+      );
+    }
+
+    return testList;
   }
 }

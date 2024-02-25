@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:Genius/screens/study.dart';
-import 'package:Genius/screens/batches.dart';
-import 'package:Genius/screens/test.dart';
-import 'package:Genius/screens/profile.dart';
-import 'package:Genius/globalData.dart';
+import 'package:genius/screens/study.dart';
+import 'package:genius/screens/batches.dart';
+import 'package:genius/screens/test.dart';
+import 'package:genius/screens/profile.dart';
+import 'package:genius/globalData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
@@ -33,6 +33,34 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    // Fetch all relevant material
+    db.collection("batches").get().then(
+          (querySnapshot) {
+        for (var docSnapshot in querySnapshot.docs) {
+
+          var data = docSnapshot.data();
+
+          if (data['type'] == 0) {
+            testMaterial.add(data['type']);
+          }
+          else if (data['type'] == 1) {
+            videoMaterial.add(data['type']);
+          }
+          else if (data['type'] == 2) {
+            noteMaterial.add(data['data']);
+          }
+
+          setState(() {
+            isMaterialLoaded = true;
+          });
+
+
+        }
+      },
+      onError: (e) => print("Error completing: $e"),
+    );
+
     setState(() {
       if (user!['batches'].length == 0) {
         _selectedIndex = 1;

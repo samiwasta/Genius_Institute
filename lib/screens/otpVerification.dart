@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:Genius/screens/register.dart';
-import 'package:Genius/globalData.dart';
+import 'package:genius/screens/register.dart';
+import 'package:genius/globalData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -151,7 +151,6 @@ class _OTPVerificationState extends State<OTPVerification> {
 
                 final SharedPreferences prefs = await SharedPreferences.getInstance();
                 await prefs.setString('phonenumber', phonenumber!);
-                await prefs.setString('user', jsonEncode(user));
 
                 Navigator.popAndPushNamed(context, '/bottomNavigationBar');
               }

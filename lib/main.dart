@@ -1,12 +1,12 @@
-import 'package:Genius/utilities/bottomNavigationBar.dart';
-import 'package:Genius/screens/study.dart';
-import 'package:Genius/screens/register.dart';
+import 'package:genius/utilities/bottomNavigationBar.dart';
+import 'package:genius/screens/study.dart';
+import 'package:genius/screens/register.dart';
 import 'package:flutter/material.dart';
-import 'package:Genius/screens/login.dart';
-import 'package:Genius/screens/otpVerification.dart';
+import 'package:genius/screens/login.dart';
+import 'package:genius/screens/otpVerification.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:Genius/globalData.dart';
+import 'package:genius/globalData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Genius/globalData.dart';
+import 'package:genius/globalData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CourseProductCard extends StatefulWidget {

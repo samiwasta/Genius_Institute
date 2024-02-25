@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
-import 'package:Genius/globalData.dart';
+import 'package:genius/globalData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -181,7 +181,6 @@ class _RegisterState extends State<Register> {
                         final SharedPreferences prefs =
                             await SharedPreferences.getInstance();
                         await prefs.setString('phonenumber', phonenumber!);
-                        await prefs.setString('user', jsonEncode(user));
 
                         Navigator.popAndPushNamed(
                             context, '/bottomNavigationBar');
