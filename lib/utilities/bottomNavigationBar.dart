@@ -4,10 +4,9 @@ import 'package:genius/screens/batches.dart';
 import 'package:genius/screens/test.dart';
 import 'package:genius/screens/profile.dart';
 import 'package:genius/globalData.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
-  const BottomNavigationBarWidget({Key? key}) : super(key: key);
+  const BottomNavigationBarWidget({super.key});
 
   @override
   _BottomNavigationBarWidgetState createState() => _BottomNavigationBarWidgetState();
@@ -17,10 +16,10 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   int _selectedIndex = 1;
 
   static final List<Widget> _screens = <Widget>[
-    StudyScreen(),
-    BatchesScreen(),
-    TestScreen(),
-    ProfileScreen(),
+    const StudyScreen(),
+    const BatchesScreen(),
+    const TestScreen(),
+    const ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -97,7 +96,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color(0xFFD2686E),
+        selectedItemColor: const Color(0xFFD2686E),
         onTap: _onItemTapped,
       ),
     );

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:genius/globalData.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StudyScreen extends StatefulWidget {
   const StudyScreen({super.key});
@@ -21,7 +19,7 @@ class _StudyScreenState extends State<StudyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: (isMaterialLoaded)? Column(
+      body: (isMaterialLoaded)? const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           /*
@@ -36,7 +34,7 @@ class _StudyScreenState extends State<StudyScreen> {
 
           Center(child: Text('Study Screen'),),
         ],
-      ) : Center(child: CircularProgressIndicator(),),
+      ) : const Center(child: CircularProgressIndicator(),),
     );
   }
 }

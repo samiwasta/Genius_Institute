@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:genius/screens/register.dart';
 import 'package:genius/globalData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class OTPVerification extends StatefulWidget {
   final String phoneNumber;
 
-  const OTPVerification({Key? key, required this.phoneNumber}) : super(key: key);
+  const OTPVerification({super.key, required this.phoneNumber});
 
   @override
   _OTPVerificationState createState() => _OTPVerificationState();
@@ -34,39 +32,39 @@ class _OTPVerificationState extends State<OTPVerification> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: _isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : Form(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SafeArea(child: SizedBox()),
-              Text(
+              const SafeArea(child: SizedBox()),
+              const Text(
                 'OTP verification code is sent to:',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text(
                 widget.phoneNumber,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                 ),
               ),
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'Enter 6-digit OTP:',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextFormField(
                 keyboardType: TextInputType.number,
                 maxLength: 6,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'OTP',
                 ),
@@ -85,32 +83,32 @@ class _OTPVerificationState extends State<OTPVerification> {
                   });
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 'Generated OTP: $_generatedOTP', // Display the generated OTP here
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Expanded(child: SizedBox()),
+              const Expanded(child: SizedBox()),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
                           _verifyOTP(context);
                         },
-                        child: Text(
-                          'Verify OTP',
-                          style: TextStyle(fontSize: 16, color: Colors.white),
-                        ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black87,
                           elevation: 0,
+                        ),
+                        child: const Text(
+                          'Verify OTP',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
                     ),
@@ -161,7 +159,7 @@ class _OTPVerificationState extends State<OTPVerification> {
 
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Incorrect OTP. Please try again.'),
           backgroundColor: Colors.red,
         ),

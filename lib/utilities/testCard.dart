@@ -19,7 +19,7 @@ Widget buildTestCards(List<Test> tests) {
 
 Widget _buildTestCard(Test test) {
   return Card(
-    margin: EdgeInsets.all(16),
+    margin: const EdgeInsets.all(16),
     child: Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -27,29 +27,29 @@ Widget _buildTestCard(Test test) {
         children: [
           Text(
             test.title,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             'Duration: ${test.duration}',
-            style: TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               // Add your logic to start the test
             },
-            child: Text(
+            style: ElevatedButton.styleFrom(
+                elevation: 0,
+                backgroundColor: Colors.black87,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12)
+            ),
+            child: const Text(
               'Attempt Test',
               style: TextStyle(
                   fontSize: 14,
                   color: Colors.white
               ),
-            ),
-            style: ElevatedButton.styleFrom(
-                elevation: 0,
-                backgroundColor: Colors.black87,
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12)
             ),
           ),
         ],

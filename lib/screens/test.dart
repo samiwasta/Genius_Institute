@@ -4,7 +4,7 @@ import 'package:genius/utilities/testCard.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 
 class TestScreen extends StatefulWidget {
-  const TestScreen({Key? key}) : super(key: key);
+  const TestScreen({super.key});
 
   @override
   _TestScreenState createState() => _TestScreenState();
@@ -43,12 +43,12 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tests'),
+        title: const Text('Tests'),
         bottom: TabBar(
           controller: _tabController,
-          indicatorColor: Color(0xFFD2686E),
-          labelColor: Color(0xFFD2686E),
-          tabs: [
+          indicatorColor: const Color(0xFFD2686E),
+          labelColor: const Color(0xFFD2686E),
+          tabs: const [
             Tab(text: 'Subject Test'),
             Tab(text: 'Week Test'),
             Tab(text: 'Month Test'),
@@ -91,7 +91,7 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
           buildTestCards(_getMonthlyTests()),
           buildTestCards(_getFullTests()),
         ],
-      ) : Center(child: CircularProgressIndicator(),),
+      ) : const Center(child: CircularProgressIndicator(),),
     );
   }
 

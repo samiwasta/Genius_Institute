@@ -10,6 +10,19 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SafeArea(child: SizedBox(),),
+          CircleAvatar(
+            radius: 60.0,
+            backgroundColor: Colors.grey,
+          )
+        ],
+      ),
+
+    );
   }
 }

@@ -16,10 +16,12 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   db = FirebaseFirestore.instance;
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +34,19 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/':
-            return MaterialPageRoute(builder: (_) => Login());
+            return MaterialPageRoute(builder: (_) => const Login());
           case '/otpVerification':
             return MaterialPageRoute(
               builder: (_) => OTPVerification(phoneNumber: settings.arguments as String),
             );
           case '/register' :
-            return MaterialPageRoute(builder: (_) => Register());
+            return MaterialPageRoute(builder: (_) => const Register());
           case '/bottomNavigationBar' :
-            return MaterialPageRoute(builder: (_) => BottomNavigationBarWidget());
+            return MaterialPageRoute(builder: (_) => const BottomNavigationBarWidget());
           case '/study' :
-            return MaterialPageRoute(builder: (_) => StudyScreen());
+            return MaterialPageRoute(builder: (_) => const StudyScreen());
           default:
-            return MaterialPageRoute(builder: (_) => Login());
+            return MaterialPageRoute(builder: (_) => const Login());
         }
       },
     );

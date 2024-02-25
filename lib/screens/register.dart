@@ -1,13 +1,11 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:genius/globalData.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+  const Register({super.key});
 
   @override
   State<Register> createState() => _RegisterState();
@@ -31,67 +29,67 @@ class _RegisterState extends State<Register> {
     print(tag);
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SafeArea(child: SizedBox()),
-            Text(
+            const SafeArea(child: SizedBox()),
+            const Text(
               'Let us know more about you!',
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             Form(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Personal Details',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12,
                   ),
                   TextFormField(
                     onChanged: (text) {
                       name = text;
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Full Name',
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   TextFormField(
                     onChanged: (text) {
                       email = text;
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Email Address',
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
-                  Text(
+                  const Text(
                     'Other Details',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12,
                   ),
-                  Text(
+                  const Text(
                     'Select Exams',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   ChipsChoice<String>.multiple(
@@ -115,14 +113,14 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12,
                   ),
-                  Text(
+                  const Text(
                     'Select Class',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   ChipsChoice.single(
@@ -147,12 +145,12 @@ class _RegisterState extends State<Register> {
                 ],
               ),
             ),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () async {
@@ -161,7 +159,7 @@ class _RegisterState extends State<Register> {
                           exams.add(options.indexOf(exam));
                         }
 
-                        final new_user = <String, dynamic>{
+                        final newUser = <String, dynamic>{
                           "batches": [],
                           "name": name,
                           "email": email,
@@ -172,9 +170,9 @@ class _RegisterState extends State<Register> {
                         await db
                             .collection("users")
                             .doc(phonenumber)
-                            .set(new_user);
+                            .set(newUser);
 
-                        user = new_user;
+                        user = newUser;
 
                         // Save phonenumber and user in shared prefs qwerty
 
@@ -185,13 +183,13 @@ class _RegisterState extends State<Register> {
                         Navigator.popAndPushNamed(
                             context, '/bottomNavigationBar');
                       },
-                      child: Text(
-                        'Continue',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black87,
                         elevation: 0,
+                      ),
+                      child: const Text(
+                        'Continue',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),
                   ),

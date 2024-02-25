@@ -1,7 +1,5 @@
-import 'dart:convert';
 
 import 'package:genius/globalData.dart';
-import 'package:genius/screens/otpVerification.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({super.key});
 
   @override
   State<Login> createState() => _LoginState();
@@ -65,7 +63,7 @@ class _LoginState extends State<Login> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SafeArea(child: SizedBox()),
+            const SafeArea(child: SizedBox()),
             SvgPicture.asset(
               "assets/images/Logo.svg",
               height: 50,
@@ -81,7 +79,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            Center(
+            const Center(
               child: Text(
                 "Welcome!",
                 style: TextStyle(
@@ -91,7 +89,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            Center(
+            const Center(
               child: Text(
                 "to Genius Institute",
                 style: TextStyle(
@@ -101,7 +99,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            Center(
+            const Center(
               child: Text(
                 "Best Teacher | Affordable Pricing | Live Batches | DPP | Notes",
                 style: TextStyle(
@@ -111,7 +109,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Expanded(
               child: Form(
                 key: _formKey,
@@ -119,10 +117,10 @@ class _LoginState extends State<Login> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Color(0xFFEEEEEE),
                             blurRadius: 10,
@@ -138,11 +136,11 @@ class _LoginState extends State<Login> {
                         },
                         cursorColor: Colors.black,
                         formatInput: false,
-                        selectorConfig: SelectorConfig(
+                        selectorConfig: const SelectorConfig(
                           selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                         ),
                         inputDecoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(bottom: 15, left: 0),
+                          contentPadding: const EdgeInsets.only(bottom: 15, left: 0),
                           border: InputBorder.none,
                           hintText: 'Phone Number',
                           hintStyle: TextStyle(
@@ -152,7 +150,7 @@ class _LoginState extends State<Login> {
                         ),
                         initialValue: PhoneNumber(isoCode: 'IN'),
                         autoValidateMode: AutovalidateMode.onUserInteraction,
-                        selectorTextStyle: TextStyle(color: Colors.black),
+                        selectorTextStyle: const TextStyle(color: Colors.black),
                         ignoreBlank: false,
                         onInputValidated: (bool value) {
                           // Handle phone number validation if needed
@@ -160,12 +158,12 @@ class _LoginState extends State<Login> {
                         inputBorder: InputBorder.none,
                       ),
                     ),
-                    Expanded(child: SizedBox()),
+                    const Expanded(child: SizedBox()),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
-                          child: Container(
+                          child: SizedBox(
                             height: 50,
                             child: ElevatedButton(
                               onPressed: () {
@@ -174,13 +172,13 @@ class _LoginState extends State<Login> {
                                   Navigator.popAndPushNamed(context, '/otpVerification', arguments: _phoneNumber);
                                 }
                               },
-                              child: Text(
-                                'Continue',
-                                style: TextStyle(fontSize: 16, color: Colors.white),
-                              ),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.black87,
                                 elevation: 0,
+                              ),
+                              child: const Text(
+                                'Continue',
+                                style: TextStyle(fontSize: 16, color: Colors.white),
                               ),
                             ),
                           ),

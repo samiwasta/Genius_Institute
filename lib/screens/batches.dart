@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:genius/utilities/courseProductCard.dart';
 import 'package:genius/globalData.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BatchesScreen extends StatefulWidget {
-  const BatchesScreen({Key? key}) : super(key: key);
+  const BatchesScreen({super.key});
 
   @override
   State<BatchesScreen> createState() => _BatchesScreenState();
@@ -73,7 +72,7 @@ class _BatchesScreenState extends State<BatchesScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SafeArea(child: SizedBox()),
+                  const SafeArea(child: SizedBox()),
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
@@ -81,9 +80,9 @@ class _BatchesScreenState extends State<BatchesScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           _buildTab("IIT-JEE", 0),
-                          SizedBox(width: 16),
+                          const SizedBox(width: 16),
                           _buildTab("NEET", 1),
-                          SizedBox(width: 16),
+                          const SizedBox(width: 16),
                           _buildTab("MHT-CET", 2),
                         ],
                       ),
@@ -105,7 +104,7 @@ class _BatchesScreenState extends State<BatchesScreen> {
                 ],
               ),
             )
-          : Center(child: CircularProgressIndicator()),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 
@@ -118,14 +117,14 @@ class _BatchesScreenState extends State<BatchesScreen> {
           onTap: () {
             _pageController.animateToPage(
               index,
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               curve: Curves.ease,
             );
           },
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             decoration: BoxDecoration(
-              color: isSelected ? Color(0xFFD2686E) : Colors.white,
+              color: isSelected ? const Color(0xFFD2686E) : Colors.white,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
