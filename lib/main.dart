@@ -1,3 +1,4 @@
+import 'package:genius/screens/aboutUs.dart';
 import 'package:genius/utilities/bottomNavigationBar.dart';
 import 'package:genius/screens/study.dart';
 import 'package:genius/screens/register.dart';
@@ -45,6 +46,8 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (_) => const BottomNavigationBarWidget());
           case '/study' :
             return MaterialPageRoute(builder: (_) => const StudyScreen());
+          case '/aboutUs' :
+            return MaterialPageRoute(builder: (_) => const AboutUs());
           default:
             return MaterialPageRoute(builder: (_) => const Login());
         }

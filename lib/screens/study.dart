@@ -22,16 +22,6 @@ class _StudyScreenState extends State<StudyScreen> {
       body: (isMaterialLoaded)? const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          /*
-          ElevatedButton(onPressed: () async{
-            final SharedPreferences prefs = await SharedPreferences.getInstance();
-            prefs.clear();
-            Navigator.popAndPushNamed(context, '/login');
-          }, child: Text('Logout')),
-
-           */
-
-
           Center(child: Text('Study Screen'),),
         ],
       ) : const Center(child: CircularProgressIndicator(),),
