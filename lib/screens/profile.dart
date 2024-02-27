@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:genius/globalData.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key});
@@ -19,9 +20,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return initials.toUpperCase();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
-    String fullName = 'Sami Dilawar Wasta';
+    String fullName = user!['name'];
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -57,16 +60,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           const SizedBox(height: 8,),
-          const Text(
-            'samiwasta.11@gmail.com',
+          Text(
+            user!['email'],
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w400,
               color: Colors.grey,
             ),
           ),
-          const Text(
-            '7559161447',
+           Text(
+            phonenumber!,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w400,

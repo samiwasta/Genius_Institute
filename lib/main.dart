@@ -2,6 +2,8 @@ import 'package:genius/screens/aboutUs.dart';
 import 'package:genius/screens/contactUs.dart';
 import 'package:genius/screens/privacyPolicy.dart';
 import 'package:genius/screens/termsAndConditions.dart';
+import 'package:genius/screens/test.dart';
+import 'package:genius/screens/testScreen.dart';
 import 'package:genius/utilities/bottomNavigationBar.dart';
 import 'package:genius/screens/study.dart';
 import 'package:genius/screens/register.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:genius/screens/login.dart';
 import 'package:genius/screens/otpVerification.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'firebase_options.dart';
 import 'package:genius/globalData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,6 +32,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'Your App Name',
       theme: ThemeData(
@@ -57,6 +61,8 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (_) => TermsAndConditions());
           case '/privacyPolicy' :
             return MaterialPageRoute(builder: (_) => PrivacyPolicy());
+          case '/testScreen' :
+            return MaterialPageRoute(builder: (_) => TestFormScreen());
           default:
             return MaterialPageRoute(builder: (_) => const Login());
         }

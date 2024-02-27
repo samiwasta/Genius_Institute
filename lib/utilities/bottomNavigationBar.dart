@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:genius/screens/study.dart';
 import 'package:genius/screens/batches.dart';
+import 'package:genius/screens/termsAndConditions.dart';
 import 'package:genius/screens/test.dart';
 import 'package:genius/screens/profile.dart';
 import 'package:genius/globalData.dart';
@@ -18,7 +19,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   static final List<Widget> _screens = <Widget>[
     const StudyScreen(),
     const BatchesScreen(),
-    const TestScreen(),
+    const TestsScreen(),
     const ProfileScreen(),
   ];
 
@@ -34,20 +35,20 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     super.initState();
 
     // Fetch all relevant material
-    db.collection("batches").get().then(
+    db.collection("material").get().then(
           (querySnapshot) {
         for (var docSnapshot in querySnapshot.docs) {
 
           var data = docSnapshot.data();
 
           if (data['type'] == 0) {
-            testMaterial.add(data['type']);
+            testMaterial.add(data);
           }
           else if (data['type'] == 1) {
-            videoMaterial.add(data['type']);
+            videoMaterial.add(data);
           }
           else if (data['type'] == 2) {
-            noteMaterial.add(data['data']);
+            noteMaterial.add(data);
           }
 
           setState(() {

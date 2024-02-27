@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:genius/globalData.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class Test {
   final String title;
   final String duration;
   final String URL;
+  final Function launchFunction;
 
-  Test({required this.title, required this.duration, required this.URL});
+  Test({required this.title, required this.duration, required this.URL, required this.launchFunction});
 }
 
 Widget buildTestCards(List<Test> tests) {
@@ -16,6 +19,8 @@ Widget buildTestCards(List<Test> tests) {
     },
   );
 }
+
+
 
 Widget _buildTestCard(Test test) {
   return Card(
@@ -37,7 +42,8 @@ Widget _buildTestCard(Test test) {
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
-              // Add your logic to start the test
+              testName = test.title;
+              test.launchFunction(test.URL);
             },
             style: ElevatedButton.styleFrom(
                 elevation: 0,

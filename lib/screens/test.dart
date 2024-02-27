@@ -2,20 +2,22 @@ import 'package:genius/globalData.dart';
 import 'package:flutter/material.dart';
 import 'package:genius/utilities/testCard.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class TestScreen extends StatefulWidget {
-  const TestScreen({super.key});
+class TestsScreen extends StatefulWidget {
+  const TestsScreen({super.key});
 
   @override
-  _TestScreenState createState() => _TestScreenState();
+  _TestsScreenState createState() => _TestsScreenState();
 }
 
-class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateMixin {
+class _TestsScreenState extends State<TestsScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   int tag = 0;
   List<String> selectedSubject = ['All', 'Physics', 'Chemistry', 'Maths', 'Biology'];
 
+  List subjectTests = [];
   List weeklyTests = [];
   List monthlyTests = [];
   List fullTests = [];
@@ -26,13 +28,16 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
     _tabController = TabController(length: 4, vsync: this);
 
     for (var test in testMaterial) {
-      if (test['periodicity'] == 0 ) {
+      if (test['periodicity'] == 0) {
+        subjectTests.add(test);
+      }
+      else if (test['periodicity'] == 1 ) {
         weeklyTests.add(test);
       }
-      else if (test['periodicity'] == 1) {
+      else if (test['periodicity'] == 2) {
         monthlyTests.add(test);
       }
-      else if (test['perdiocity'] == 2) {
+      else if (test['perdiocity'] == 3) {
         fullTests.add(test);
       }
     }
@@ -41,6 +46,16 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
+
+    void _launchFunction(String URL) {
+        print(Uri.parse(URL));
+        controller.loadRequest(Uri.parse(URL));
+// Add your logic to start the test
+      Navigator.pushNamed(context, '/testScreen');
+
+    }
+
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tests'),
@@ -83,30 +98,30 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
                 ),
               ),
               Expanded(
-                child: buildTestCards(_getSubjectwiseTests(selectedSubject)),
+                child: buildTestCards(_getSubjectwiseTests(_launchFunction)),
               ),
             ],
           ),
-          buildTestCards(_getWeeklyTests()),
-          buildTestCards(_getMonthlyTests()),
-          buildTestCards(_getFullTests()),
+          buildTestCards(_getWeeklyTests(_launchFunction)),
+          buildTestCards(_getMonthlyTests(_launchFunction)),
+          buildTestCards(_getFullTests(_launchFunction)),
         ],
       ) : const Center(child: CircularProgressIndicator(),),
     );
   }
 
-  List<Test> _getSubjectwiseTests(List<String> selectedSubjects) {
-    // Define and return subjectwise test data based on selected subjects
-    // Filter tests based on selected subjects
+
+  List<Test> _getSubjectwiseTests(Function _launchFunction) {
 
     List<Test> testList = [];
 
-    for (var test in testMaterial) {
+    for (var test in subjectTests) {
       testList.add(
         Test(
           title: test['name'],
           duration: test['duration'],
-          URL: test['URL']
+          URL: test['URL'],
+          launchFunction: _launchFunction
         )
       );
     }
@@ -114,7 +129,7 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
     return testList;
   }
 
-  List<Test> _getWeeklyTests() {
+  List<Test> _getWeeklyTests(Function _launchFunction) {
     // Define and return weekly test data
 
     List<Test> testList = [];
@@ -124,7 +139,8 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
           Test(
               title: test['name'],
               duration: test['duration'],
-              URL: test['URL']
+              URL: test['URL'],
+              launchFunction: _launchFunction
           )
       );
     }
@@ -132,7 +148,7 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
     return testList;
   }
 
-  List<Test> _getMonthlyTests() {
+  List<Test> _getMonthlyTests(Function _launchFunction) {
     // Define and return monthly test data
     List<Test> testList = [];
 
@@ -141,7 +157,8 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
           Test(
               title: test['name'],
               duration: test['duration'],
-              URL: test['URL']
+              URL: test['URL'],
+              launchFunction: _launchFunction
           )
       );
     }
@@ -149,7 +166,7 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
     return testList;
   }
 
-  List<Test> _getFullTests() {
+  List<Test> _getFullTests(Function _launchFunction) {
     // Define and return full test data
     List<Test> testList = [];
 
@@ -158,7 +175,8 @@ class _TestScreenState extends State<TestScreen> with SingleTickerProviderStateM
           Test(
               title: test['name'],
               duration: test['duration'],
-              URL: test['URL']
+              URL: test['URL'],
+              launchFunction: _launchFunction
           )
       );
     }
