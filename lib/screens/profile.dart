@@ -89,7 +89,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ListTile(
                   title: const Text('Contact Us'),
                   onTap: () {
-                    // Navigate to Contact Us screen
+                    Navigator.pushNamed(context, '/contactUs');
                   },
                 ),
                 const Padding(
@@ -99,7 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ListTile(
                   title: const Text('Terms and Conditions'),
                   onTap: () {
-                    // Navigate to Terms and Conditions screen
+                    Navigator.pushNamed(context, '/termsAndConditions');
                   },
                 ),
                 const Padding(
@@ -109,7 +109,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ListTile(
                   title: const Text('Privacy Policy'),
                   onTap: () {
-                    // Navigate to Privacy Policy screen
+                    Navigator.pushNamed(context, '/privacyPolicy');
                   },
                 ),
                 const Padding(

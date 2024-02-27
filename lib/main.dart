@@ -1,4 +1,7 @@
 import 'package:genius/screens/aboutUs.dart';
+import 'package:genius/screens/contactUs.dart';
+import 'package:genius/screens/privacyPolicy.dart';
+import 'package:genius/screens/termsAndConditions.dart';
 import 'package:genius/utilities/bottomNavigationBar.dart';
 import 'package:genius/screens/study.dart';
 import 'package:genius/screens/register.dart';
@@ -48,6 +51,12 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (_) => const StudyScreen());
           case '/aboutUs' :
             return MaterialPageRoute(builder: (_) => const AboutUs());
+          case '/contactUs' :
+            return MaterialPageRoute(builder: (_) => ContactUsScreen());
+          case '/termsAndConditions' :
+            return MaterialPageRoute(builder: (_) => TermsAndConditions());
+          case '/privacyPolicy' :
+            return MaterialPageRoute(builder: (_) => PrivacyPolicy());
           default:
             return MaterialPageRoute(builder: (_) => const Login());
         }
