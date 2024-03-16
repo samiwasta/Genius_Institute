@@ -47,9 +47,14 @@ class _TestsScreenState extends State<TestsScreen> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
 
+
     void _launchFunction(String URL) {
-        print(Uri.parse(URL));
-        controller.loadRequest(Uri.parse(URL));
+        //var uri = Uri(path: URL, scheme: 'https');
+        //print(uri);
+        //controller.loadRequest(uri);
+        String iframe = '<style> #frame {-ms-zoom: 1.5; zoom:1.5; -moz-transform: scale(0.75); -moz-transform-origin: 0 0;} </style> <iframe src="$URL" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>';
+
+        controller.loadHtmlString(iframe);
 // Add your logic to start the test
       Navigator.pushNamed(context, '/testScreen');
 
