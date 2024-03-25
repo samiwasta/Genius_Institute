@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:genius/screens/aboutUs.dart';
 import 'package:genius/screens/contactUs.dart';
+import 'package:genius/screens/dppPdfScreen.dart';
+import 'package:genius/screens/dpps.dart';
+import 'package:genius/screens/notes.dart';
 import 'package:genius/screens/privacyPolicy.dart';
 import 'package:genius/screens/termsAndConditions.dart';
 import 'package:genius/screens/test.dart';
@@ -85,6 +88,12 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (_) => TestFormScreen());
           case '/timetableForm' :
             return MaterialPageRoute(builder: (_) => TimetableForm());
+          case '/dpps' :
+            return MaterialPageRoute(builder: (_) => DppScreen());
+          case '/dppPdfScreen' :
+            return MaterialPageRoute(builder: (_) => DppPdfScreen());
+          case '/notes' :
+            return MaterialPageRoute(builder: (_) => Notes());
         }
       },
     );
