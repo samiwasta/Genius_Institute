@@ -26,31 +26,35 @@ class _BatchesScreenState extends State<BatchesScreen> {
 
     // Fetch all batches
     db.collection("batches").get().then(
-      (querySnapshot) {
+          (querySnapshot) {
         for (var docSnapshot in querySnapshot.docs) {
-
           var data = docSnapshot.data();
 
           var card = CourseProductCard(
             title: '${docSnapshot.id}',
             batch: data['batch'],
             imageUrl: data['imageURL'],
-            price: '₹${data['price']}',
+            price: '${data['price']}',
             duration: data['duration'],
           );
 
           if (data['exam'] == 'JEE') {
-            JEEbatches.add(card);
+            setState(() {
+              JEEbatches.add(card);
+            });
           } else if (data['exam'] == 'NEET') {
-            NEETbatches.add(card);
+            setState(() {
+              NEETbatches.add(card);
+            });
           } else if (data['exam'] == 'CET') {
-            CETbatches.add(card);
+            setState(() {
+              CETbatches.add(card);
+            });
           }
-
-          setState(() {
-            isLoaded = true;
-          });
         }
+        setState(() {
+          isLoaded = true;
+        });
       },
       onError: (e) => print("Error completing: $e"),
     );
@@ -67,43 +71,43 @@ class _BatchesScreenState extends State<BatchesScreen> {
     return Scaffold(
       body: (isLoaded)
           ? Padding(
-              padding:
-                  const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        padding:
+        const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SafeArea(child: SizedBox()),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTab("IIT-JEE", 0),
+                    const SizedBox(width: 16),
+                    _buildTab("NEET", 1),
+                    const SizedBox(width: 16),
+                    _buildTab("MHT-CET", 2),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: (index) {
+                  tabIndexNotifier.value = index;
+                },
                 children: [
-                  const SafeArea(child: SizedBox()),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _buildTab("IIT-JEE", 0),
-                          const SizedBox(width: 16),
-                          _buildTab("NEET", 1),
-                          const SizedBox(width: 16),
-                          _buildTab("MHT-CET", 2),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: PageView(
-                      controller: _pageController,
-                      onPageChanged: (index) {
-                        tabIndexNotifier.value = index;
-                      },
-                      children: [
-                        _buildCourseList(JEEbatches),
-                        _buildCourseList(NEETbatches),
-                        _buildCourseList(CETbatches),
-                      ],
-                    ),
-                  ),
+                  _buildCourseList(JEEbatches),
+                  _buildCourseList(NEETbatches),
+                  _buildCourseList(CETbatches),
                 ],
               ),
-            )
+            ),
+          ],
+        ),
+      )
           : const Center(child: CircularProgressIndicator()),
     );
   }

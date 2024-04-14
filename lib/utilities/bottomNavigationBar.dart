@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:genius/screens/study.dart';
 import 'package:genius/screens/batches.dart';
-import 'package:genius/screens/termsAndConditions.dart';
 import 'package:genius/screens/test.dart';
 import 'package:genius/screens/profile.dart';
 import 'package:genius/globalData.dart';

@@ -2,7 +2,6 @@ import 'package:genius/globalData.dart';
 import 'package:flutter/material.dart';
 import 'package:genius/utilities/testCard.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class TestsScreen extends StatefulWidget {
   const TestsScreen({super.key});
@@ -48,7 +47,7 @@ class _TestsScreenState extends State<TestsScreen> with SingleTickerProviderStat
   Widget build(BuildContext context) {
 
 
-    void _launchFunction(String URL) {
+    void launchFunction(String URL) {
         //var uri = Uri(path: URL, scheme: 'https');
         //print(uri);
         //controller.loadRequest(uri);
@@ -103,20 +102,20 @@ class _TestsScreenState extends State<TestsScreen> with SingleTickerProviderStat
                 ),
               ),
               Expanded(
-                child: buildTestCards(_getSubjectwiseTests(_launchFunction)),
+                child: buildTestCards(_getSubjectwiseTests(launchFunction)),
               ),
             ],
           ),
-          buildTestCards(_getWeeklyTests(_launchFunction)),
-          buildTestCards(_getMonthlyTests(_launchFunction)),
-          buildTestCards(_getFullTests(_launchFunction)),
+          buildTestCards(_getWeeklyTests(launchFunction)),
+          buildTestCards(_getMonthlyTests(launchFunction)),
+          buildTestCards(_getFullTests(launchFunction)),
         ],
       ) : const Center(child: CircularProgressIndicator(),),
     );
   }
 
 
-  List<Test> _getSubjectwiseTests(Function _launchFunction) {
+  List<Test> _getSubjectwiseTests(Function launchFunction) {
 
     List<Test> testList = [];
 
@@ -126,7 +125,7 @@ class _TestsScreenState extends State<TestsScreen> with SingleTickerProviderStat
           title: test['name'],
           duration: test['duration'],
           URL: test['URL'],
-          launchFunction: _launchFunction
+          launchFunction: launchFunction
         )
       );
     }
@@ -134,7 +133,7 @@ class _TestsScreenState extends State<TestsScreen> with SingleTickerProviderStat
     return testList;
   }
 
-  List<Test> _getWeeklyTests(Function _launchFunction) {
+  List<Test> _getWeeklyTests(Function launchFunction) {
     // Define and return weekly test data
 
     List<Test> testList = [];
@@ -145,7 +144,7 @@ class _TestsScreenState extends State<TestsScreen> with SingleTickerProviderStat
               title: test['name'],
               duration: test['duration'],
               URL: test['URL'],
-              launchFunction: _launchFunction
+              launchFunction: launchFunction
           )
       );
     }
@@ -153,7 +152,7 @@ class _TestsScreenState extends State<TestsScreen> with SingleTickerProviderStat
     return testList;
   }
 
-  List<Test> _getMonthlyTests(Function _launchFunction) {
+  List<Test> _getMonthlyTests(Function launchFunction) {
     // Define and return monthly test data
     List<Test> testList = [];
 
@@ -163,7 +162,7 @@ class _TestsScreenState extends State<TestsScreen> with SingleTickerProviderStat
               title: test['name'],
               duration: test['duration'],
               URL: test['URL'],
-              launchFunction: _launchFunction
+              launchFunction: launchFunction
           )
       );
     }
@@ -171,7 +170,7 @@ class _TestsScreenState extends State<TestsScreen> with SingleTickerProviderStat
     return testList;
   }
 
-  List<Test> _getFullTests(Function _launchFunction) {
+  List<Test> _getFullTests(Function launchFunction) {
     // Define and return full test data
     List<Test> testList = [];
 
@@ -181,7 +180,7 @@ class _TestsScreenState extends State<TestsScreen> with SingleTickerProviderStat
               title: test['name'],
               duration: test['duration'],
               URL: test['URL'],
-              launchFunction: _launchFunction
+              launchFunction: launchFunction
           )
       );
     }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 
 class TimetableForm extends StatefulWidget {
-  const TimetableForm({Key? key}) : super(key: key);
+  const TimetableForm({super.key});
 
   @override
   State<TimetableForm> createState() => _TimetableFormState();
@@ -53,7 +53,7 @@ class _TimetableFormState extends State<TimetableForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Timetable Form')),
+      appBar: AppBar(title: const Text('Timetable Form')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -61,7 +61,7 @@ class _TimetableFormState extends State<TimetableForm> {
           children: <Widget>[
             Row(
               children: [
-                Text(
+                const Text(
                   'Study Start Time',
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
@@ -69,27 +69,27 @@ class _TimetableFormState extends State<TimetableForm> {
                       fontSize: 16
                   ),
                 ),
-                SizedBox(width: 16,),
+                const SizedBox(width: 16,),
                 ElevatedButton(
                   onPressed: () => _selectStudyStartTime(context),
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    side: const BorderSide(color: Colors.grey)
+                  ),
                   child: Text(_studyStartTime != null
                       ? _studyStartTime!.format(context)
                       : 'Select Time',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFFD2686E)
                   ),),
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                    side: BorderSide(color: Colors.grey)
-                  ),
                 ),
               ],
             ),
-            SizedBox(height: 20.0),
-            Text(
+            const SizedBox(height: 20.0),
+            const Text(
                 'Total Preparation Time',
                 style: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -116,8 +116,8 @@ class _TimetableFormState extends State<TimetableForm> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
-            Text(
+            const SizedBox(height: 20.0),
+            const Text(
               'Exam(s) You Are Preparing',
               style: TextStyle(
                   fontWeight: FontWeight.w500,
@@ -147,10 +147,10 @@ class _TimetableFormState extends State<TimetableForm> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Text(
                 'Physics Difficulty: ${_physicsDifficulty.toStringAsFixed(1)}',
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.black87,
                   fontSize: 16
@@ -161,7 +161,7 @@ class _TimetableFormState extends State<TimetableForm> {
               min: 1,
               max: 10,
               divisions: 9,
-              activeColor: Color(0xFFD2686E),
+              activeColor: const Color(0xFFD2686E),
               inactiveColor: Colors.red[100],
               onChanged: (double value) {
                 setState(() {
@@ -169,10 +169,10 @@ class _TimetableFormState extends State<TimetableForm> {
                 });
               },
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Text(
                 'Chemistry Difficulty: ${_chemistryDifficulty.toStringAsFixed(1)}',
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.black87,
                   fontSize: 16
@@ -183,7 +183,7 @@ class _TimetableFormState extends State<TimetableForm> {
               min: 1,
               max: 10,
               divisions: 9,
-              activeColor: Color(0xFFD2686E),
+              activeColor: const Color(0xFFD2686E),
               inactiveColor: Colors.red[100],
               onChanged: (double value) {
                 setState(() {
@@ -191,10 +191,10 @@ class _TimetableFormState extends State<TimetableForm> {
                 });
               },
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Text(
                 'Maths Difficulty: ${_mathsDifficulty.toStringAsFixed(1)}',
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.black87,
                   fontSize: 16
@@ -205,7 +205,7 @@ class _TimetableFormState extends State<TimetableForm> {
               min: 1,
               max: 10,
               divisions: 9,
-              activeColor: Color(0xFFD2686E),
+              activeColor: const Color(0xFFD2686E),
               inactiveColor: Colors.red[100],
               onChanged: (double value) {
                 setState(() {
@@ -213,10 +213,10 @@ class _TimetableFormState extends State<TimetableForm> {
                 });
               },
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Text(
                 'Biology Difficulty: ${_biologyDifficulty.toStringAsFixed(1)}',
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.black87,
                   fontSize: 16
@@ -227,7 +227,7 @@ class _TimetableFormState extends State<TimetableForm> {
               min: 1,
               max: 10,
               divisions: 9,
-              activeColor: Color(0xFFD2686E),
+              activeColor: const Color(0xFFD2686E),
               inactiveColor: Colors.red[100],
               onChanged: (double value) {
                 setState(() {
@@ -235,7 +235,7 @@ class _TimetableFormState extends State<TimetableForm> {
                 });
               },
             ),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             Row(
               children: [
                 Expanded(

@@ -1,12 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:genius/screens/aboutUs.dart';
 import 'package:genius/screens/contactUs.dart';
-import 'package:genius/screens/dppPdfScreen.dart';
 import 'package:genius/screens/dpps.dart';
+import 'package:genius/screens/lectureScreen.dart';
 import 'package:genius/screens/notes.dart';
 import 'package:genius/screens/privacyPolicy.dart';
 import 'package:genius/screens/termsAndConditions.dart';
-import 'package:genius/screens/test.dart';
 import 'package:genius/screens/testScreen.dart';
 import 'package:genius/screens/timetableForm.dart';
 import 'package:genius/utilities/bottomNavigationBar.dart';
@@ -16,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:genius/screens/login.dart';
 import 'package:genius/screens/otpVerification.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'firebase_options.dart';
 import 'package:genius/globalData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,7 +25,7 @@ void main() async {
 
   if(kIsWeb) {
     await Firebase.initializeApp(
-      options: FirebaseOptions(
+      options: const FirebaseOptions(
           apiKey: "AIzaSyAM7vAhPO1JuvmfT9YyDB9-siRKnG_2kXY",
           authDomain: "genius-lms.firebaseapp.com",
           projectId: "genius-lms",
@@ -81,20 +79,21 @@ class MyApp extends StatelessWidget {
           case '/contactUs' :
             return MaterialPageRoute(builder: (_) => ContactUsScreen());
           case '/termsAndConditions' :
-            return MaterialPageRoute(builder: (_) => TermsAndConditions());
+            return MaterialPageRoute(builder: (_) => const TermsAndConditions());
           case '/privacyPolicy' :
-            return MaterialPageRoute(builder: (_) => PrivacyPolicy());
+            return MaterialPageRoute(builder: (_) => const PrivacyPolicy());
           case '/testScreen' :
-            return MaterialPageRoute(builder: (_) => TestFormScreen());
+            return MaterialPageRoute(builder: (_) => const TestFormScreen());
           case '/timetableForm' :
-            return MaterialPageRoute(builder: (_) => TimetableForm());
+            return MaterialPageRoute(builder: (_) => const TimetableForm());
           case '/dpps' :
-            return MaterialPageRoute(builder: (_) => DppScreen());
-          case '/dppPdfScreen' :
-            return MaterialPageRoute(builder: (_) => DppPdfScreen());
+            return MaterialPageRoute(builder: (_) => const DppScreen());
           case '/notes' :
-            return MaterialPageRoute(builder: (_) => Notes());
+            return MaterialPageRoute(builder: (_) => const Notes());
+          case '/lectureScreen' :
+            return MaterialPageRoute(builder: (_) => const LectureScreen());
         }
+        return null;
       },
     );
   }

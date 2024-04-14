@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:genius/globalData.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:genius/screens/lectureScreen.dart'; // Import LectureScreen if not already imported
 
 class CourseProductCard extends StatefulWidget {
   final String title;
@@ -9,19 +10,81 @@ class CourseProductCard extends StatefulWidget {
   final String duration; // Duration of the course
 
   const CourseProductCard({
-    super.key,
+    Key? key,
     required this.title,
     required this.batch,
     required this.imageUrl,
     required this.price,
     required this.duration,
-  });
+  }) : super(key: key);
 
   @override
   State<CourseProductCard> createState() => _CourseProductCardState();
 }
 
 class _CourseProductCardState extends State<CourseProductCard> {
+  late Razorpay _razorpay;
+  bool purchased = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  @override
+  void dispose() {
+    _razorpay.clear();
+    super.dispose();
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    // Handle payment success
+    print('Payment successful: ${response.paymentId}');
+    setState(() {
+      purchased = true;
+    });
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    // Handle payment failure
+    print('Payment failed: ${response.code} - ${response.message}');
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    // Handle external wallet payment
+    print('External wallet selected: ${response.walletName}');
+  }
+
+  void _openRazorpay() {
+    var options = {
+      'key': 'rzp_test_UUO4CRYrk6tLCW', // Replace with your Razorpay key
+      'amount': int.parse(widget.price) * 100, // Convert to paise
+      'name': 'Genius',
+      'description': widget.title,
+      'prefill': {'contact': '', 'email': ''}, // Pre-filled customer details
+      'external': {
+        'wallets': ['paytm'] // List of external wallets
+      }
+    };
+
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  void _redirectToLectures() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LectureScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -81,19 +144,9 @@ class _CourseProductCardState extends State<CourseProductCard> {
                         ],
                       ),
                       ElevatedButton(
-                        onPressed: (user!['batches'].contains(widget.title)) ? () {
-
-                        } : () {
-                          setState(() {
-                            user!['batches'].add(widget.title);
-                            db
-                                .collection("users")
-                                .doc(phonenumber)
-                                .update(user);
-                          });
-                        },
+                        onPressed: purchased ? _redirectToLectures : _openRazorpay,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: (user!['batches'].contains(widget.title)) ? Colors.green  : Colors.black87,
+                          backgroundColor: purchased ? Colors.green : Colors.black87,
                           elevation: 0,
                           padding: const EdgeInsets.symmetric(
                             horizontal: 24,
@@ -101,7 +154,7 @@ class _CourseProductCardState extends State<CourseProductCard> {
                           ),
                         ),
                         child: Text(
-                          (user!['batches'].contains(widget.title)) ? 'Study' : 'Purchase',
+                          purchased ? 'Study' : 'Purchase',
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.white,

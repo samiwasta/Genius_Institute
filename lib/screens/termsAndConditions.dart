@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TermsAndConditions extends StatelessWidget {
+  const TermsAndConditions({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

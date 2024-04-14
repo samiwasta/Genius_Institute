@@ -21,6 +21,8 @@ class ContactUsScreen extends StatelessWidget {
     },
   ];
 
+  ContactUsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +30,9 @@ class ContactUsScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SafeArea(child: SizedBox()),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+          const SafeArea(child: SizedBox()),
+          const Padding(
+            padding: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
             child: Text(
               'Contact Us',
               style: TextStyle(
@@ -49,7 +51,7 @@ class ContactUsScreen extends StatelessWidget {
                 return ListTile(
                   title: Text(
                     contact['name'],
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: Colors.black87
@@ -59,11 +61,11 @@ class ContactUsScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.phone, color: Color(0xFFD2686E)),
+                        icon: const Icon(Icons.phone, color: Color(0xFFD2686E)),
                         onPressed: () => _launchPhoneCall(contact['phone']),
                       ),
                       IconButton(
-                        icon: Icon(Icons.chat, color: Color(0xFFD2686E)),
+                        icon: const Icon(Icons.chat, color: Color(0xFFD2686E)),
                         onPressed: () => _launchWhatsApp(contact['whatsapp']),
                       ),
                     ],
@@ -72,8 +74,8 @@ class ContactUsScreen extends StatelessWidget {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
             child: Text(
               'We are here',
               style: TextStyle(
@@ -94,19 +96,19 @@ class ContactUsScreen extends StatelessWidget {
                 ),
               ),
               child: GoogleMap(
-                initialCameraPosition: CameraPosition(
+                initialCameraPosition: const CameraPosition(
                   target: LatLng(16.986299660379263, 73.298647132757),
                   zoom: 17.0,
                 ),
-                markers: Set<Marker>.of([
-                  Marker(
+                markers: <Marker>{
+                  const Marker(
                     markerId: MarkerId('marker_1'),
                     position: LatLng(16.986299660379263, 73.298647132757), // Provide the position for the marker
                     infoWindow: InfoWindow(
                       title: 'We are here',
                     ),
                   ),
-                ]),
+                },
               ),
             ),
           ),

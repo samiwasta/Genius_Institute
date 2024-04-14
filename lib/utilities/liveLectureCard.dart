@@ -5,10 +5,10 @@ class LiveLectureCard extends StatelessWidget {
   final String? thumbnailUrl;
 
   const LiveLectureCard({
-    Key? key,
+    super.key,
     this.title,
     this.thumbnailUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class LiveLectureCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
               ),
@@ -40,15 +40,15 @@ class LiveLectureCard extends StatelessWidget {
                 children: [
                   Text(
                     title ?? '',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         'LIVE',
                         style: TextStyle(
                           fontSize: 12,
@@ -56,20 +56,20 @@ class LiveLectureCard extends StatelessWidget {
                           color: Colors.red,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       ElevatedButton(
                         onPressed: () {
                           // Handle join now button tap
                         },
-                        child: Text(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black87,
+                          elevation: 0
+                        ),
+                        child: const Text(
                             'Join Now',
                           style: TextStyle(
                             color: Colors.white,
                           ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black87,
-                          elevation: 0
                         ),
                       ),
                     ],

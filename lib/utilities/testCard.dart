@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:genius/globalData.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class Test {
   final String title;

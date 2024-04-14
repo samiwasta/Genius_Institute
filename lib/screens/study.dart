@@ -5,7 +5,7 @@ import 'package:genius/utilities/liveLectureCard.dart';
 import 'package:genius/screens/videoPlayerScreen.dart';
 
 class StudyScreen extends StatefulWidget {
-  const StudyScreen({Key? key});
+  const StudyScreen({super.key});
 
   @override
   State<StudyScreen> createState() => _StudyScreenState();
@@ -16,18 +16,18 @@ class _StudyScreenState extends State<StudyScreen> {
 
   // Sample data for demonstration
   List<Map<String, dynamic>> liveClasses = [
-    {
-      'title': 'Live Class 1',
-      'thumbnail': 'https://i.ibb.co/fNPhqvM/CETCRASH.png',
-    },
-    {
-      'title': 'Live Class 2',
-      'thumbnail': 'https://i.ibb.co/fNPhqvM/CETCRASH.png',
-    },
-    {
-      'title': 'Live Class 3',
-      'thumbnail': 'https://i.ibb.co/fNPhqvM/CETCRASH.png',
-    },
+    // {
+    //   'title': 'Live Class 1',
+    //   'thumbnail': 'https://i.ibb.co/fNPhqvM/CETCRASH.png',
+    // },
+    // {
+    //   'title': 'Live Class 2',
+    //   'thumbnail': 'https://i.ibb.co/fNPhqvM/CETCRASH.png',
+    // },
+    // {
+    //   'title': 'Live Class 3',
+    //   'thumbnail': 'https://i.ibb.co/fNPhqvM/CETCRASH.png',
+    // },
   ];
 
   List<String> motivationVideos = [
@@ -107,7 +107,7 @@ class _StudyScreenState extends State<StudyScreen> {
     return quotes[quoteIndex];
   }
 
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   @override
   void dispose() {
@@ -123,7 +123,7 @@ class _StudyScreenState extends State<StudyScreen> {
       appBar: AppBar(
         title: Row(
           children: [
-            Text(
+            const Text(
               'Study for: ',
               style: TextStyle(
                 fontSize: 20,
@@ -143,7 +143,7 @@ class _StudyScreenState extends State<StudyScreen> {
                   value: value,
                   child: Text(
                     value,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                       color: Colors.black87,
@@ -151,7 +151,7 @@ class _StudyScreenState extends State<StudyScreen> {
                   ),
                 );
               }).toList(),
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_forward_ios_rounded,
                 color: Colors.grey,
                 size: 16,
@@ -167,8 +167,8 @@ class _StudyScreenState extends State<StudyScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0),
                 child: Text(
                   "Today's Quote",
                   style: TextStyle(
@@ -178,13 +178,13 @@ class _StudyScreenState extends State<StudyScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: Stack(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -193,13 +193,13 @@ class _StudyScreenState extends State<StudyScreen> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 3,
                             blurRadius: 5,
-                            offset: Offset(0, 3),
+                            offset: const Offset(0, 3),
                           ),
                         ],
                       ),
                       child: Text(
                         dailyQuote,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 20,
                           color: Color(0xFFD2686E),
                           fontWeight: FontWeight.w700,
@@ -211,7 +211,7 @@ class _StudyScreenState extends State<StudyScreen> {
                       left: 0,
                       child: Transform.rotate(
                         angle: -pi / 4,
-                        child: Text(
+                        child: const Text(
                           '"',
                           style: TextStyle(
                             fontSize: 48,
@@ -226,7 +226,7 @@ class _StudyScreenState extends State<StudyScreen> {
                       right: 0,
                       child: Transform.rotate(
                         angle: pi / 4,
-                        child: Text(
+                        child: const Text(
                           '"',
                           style: TextStyle(
                             fontSize: 48,
@@ -239,9 +239,9 @@ class _StudyScreenState extends State<StudyScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+              const SizedBox(height: 10),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0),
                 child:
                 Text(
                   "Today's Classes",
@@ -252,7 +252,7 @@ class _StudyScreenState extends State<StudyScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               liveClasses.isEmpty ? Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Center(
@@ -265,13 +265,13 @@ class _StudyScreenState extends State<StudyScreen> {
                     ),
                   ),
                 ),
-              ) : Container(
+              ) : SizedBox(
                 height: 210,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: liveClasses.length,
                   itemBuilder: (context, index) {
-                    return Container(
+                    return SizedBox(
                       width: 200,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 8.0),
@@ -284,9 +284,9 @@ class _StudyScreenState extends State<StudyScreen> {
                   },
                 ),
               ),
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0),
                 child: Text(
                   "Quick Access",
                   style: TextStyle(
@@ -296,9 +296,9 @@ class _StudyScreenState extends State<StudyScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+              const SizedBox(height: 8),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0),
                 child: Text(
                   "Instant access to your learning resources",
                   style: TextStyle(
@@ -307,7 +307,7 @@ class _StudyScreenState extends State<StudyScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -315,50 +315,48 @@ class _StudyScreenState extends State<StudyScreen> {
                     flex: 1,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Handle lectures button tap
+                        Navigator.pushNamed(context, '/lectureScreen');// Handle lectures button tap
                       },
-                      child: Text(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)
+                          ), backgroundColor: Colors.pink[50],
+                        padding: const EdgeInsets.symmetric(vertical: 20)
+                      ),
+                      child: const Text(
                           'Lectures',
                         style: TextStyle(
                           color: Colors.black87,
                           fontWeight: FontWeight.w500
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                          primary: Colors.pink[50]
-                      ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     flex: 1,
                     child: ElevatedButton(
                       onPressed: () {
                         // Handle notes button tap
                       },
-                      child: Text(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)
+                          ), backgroundColor: Colors.purple[50],
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                      ),
+                      child: const Text(
                           'Notes',
                         style: TextStyle(
                             color: Colors.black87,
                             fontWeight: FontWeight.w500
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          padding: EdgeInsets.symmetric(vertical: 20),
-                        primary: Colors.purple[50],
-                      ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -368,50 +366,48 @@ class _StudyScreenState extends State<StudyScreen> {
                       onPressed: () {
                         Navigator.pushNamed(context, '/dpps');// Handle DPPs button tap
                       },
-                      child: Text(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        ), backgroundColor: Colors.yellow[50],
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                      ),
+                      child: const Text(
                           'DPPs',
                         style: TextStyle(
                             color: Colors.black87,
                             fontWeight: FontWeight.w500
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)
-                        ),
-                          padding: EdgeInsets.symmetric(vertical: 20),
-                        primary: Colors.yellow[50],
-                      ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     flex: 1,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/timetableForm');// Handle My Timetable button tap
                       },
-                      child: Text(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)
+                          ), backgroundColor: Colors.blue[50],
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                      ),
+                      child: const Text(
                           'My Timetable',
                         style: TextStyle(
                             color: Colors.black87,
                             fontWeight: FontWeight.w500
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          padding: EdgeInsets.symmetric(vertical: 20),
-                        primary: Colors.blue[50],
-                      ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   'Motivation Corner',
                   style: TextStyle(
@@ -421,8 +417,8 @@ class _StudyScreenState extends State<StudyScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 8),
-              Container(
+              const SizedBox(height: 8),
+              SizedBox(
                 height: 150,
                 child: PageView.builder(
                   controller: _pageController,
@@ -441,10 +437,10 @@ class _StudyScreenState extends State<StudyScreen> {
                         );
                       },
                       child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 8),
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
+                          image: const DecorationImage(
                             image: NetworkImage('https://i.ibb.co/28WpxrC/MOTIVATION.png'),
                             fit: BoxFit.cover,
                           ),
@@ -458,7 +454,7 @@ class _StudyScreenState extends State<StudyScreen> {
           ),
         ),
       )
-          : Center(child: CircularProgressIndicator()),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:genius/globalData.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key});
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -62,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(height: 8,),
           Text(
             user!['email'],
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w400,
               color: Colors.grey,
@@ -70,7 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
            Text(
             phonenumber!,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w400,
               color: Colors.grey,

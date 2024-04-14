@@ -53,7 +53,7 @@ class _NotesState extends State<Notes> with SingleTickerProviderStateMixin {
         return ExpansionTile(
           title: Text(
             'Title ${itemIndex + 1}', // Change the title accordingly
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),

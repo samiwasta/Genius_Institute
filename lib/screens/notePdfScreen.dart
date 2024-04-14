@@ -12,7 +12,7 @@ class _NotePdfScreenState extends State<NotePdfScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notes Viewer'),
+        title: const Text('Notes Viewer'),
       ),
     );
   }
